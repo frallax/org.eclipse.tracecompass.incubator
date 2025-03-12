@@ -152,8 +152,7 @@ public class InAndOutDataProviderFactory extends AbstractTmfDataProviderConfigur
         try {
             create(config, trace, writeConfig, new InAndOutAnalysisModule());
         } catch (TmfConfigurationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Activator.getInstance().logError(e.getMessage(), e);
         }
     }
 
@@ -169,8 +168,7 @@ public class InAndOutDataProviderFactory extends AbstractTmfDataProviderConfigur
         try {
             remove(config, trace, InAndOutAnalysisModule.ID);
         } catch (TmfConfigurationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Activator.getInstance().logError(e.getMessage(), e);
         }
     }
 
@@ -186,7 +184,6 @@ public class InAndOutDataProviderFactory extends AbstractTmfDataProviderConfigur
      * @throws TmfConfigurationException if an error occurs
      */
     private void remove(ITmfConfiguration config, @NonNull ITmfTrace trace, String baseAnalysisId) throws TmfConfigurationException {
-        // IPath traceConfig = getConfigurationRootFolder(trace, config.getSourceTypeId());
         IPath traceConfig = getConfigurationRootFolder(trace);
         traceConfig = traceConfig.append(File.separator).append(config.getId()).addFileExtension(JSON_EXTENSION);
         File configFile = traceConfig.toFile();
@@ -225,7 +222,6 @@ public class InAndOutDataProviderFactory extends AbstractTmfDataProviderConfigur
          */
         module.setConfiguration(config);
         if (writeConfig) {
-            // IPath traceConfigPath = getConfigurationRootFolder(trace, config.getSourceTypeId());
             IPath traceConfigPath = getConfigurationRootFolder(trace);
             writeConfiguration(config, traceConfigPath);
         }
@@ -245,13 +241,6 @@ public class InAndOutDataProviderFactory extends AbstractTmfDataProviderConfigur
             throw new TmfConfigurationException("Exception when setting trace", e); //$NON-NLS-1$
         }
     }
-
-//    protected IPath getConfigurationRootFolder(ITmfTrace trace, String subFolder) {
-//        String supplFolder = TmfTraceManager.getSupplementaryFileDir(trace);
-//        IPath supplPath = new Path(supplFolder);
-//        supplPath = supplPath.addTrailingSeparator().append(subFolder);
-//        return supplPath;
-//    }
 
     @Override
     protected IPath getConfigurationRootFolder(ITmfTrace trace) {
