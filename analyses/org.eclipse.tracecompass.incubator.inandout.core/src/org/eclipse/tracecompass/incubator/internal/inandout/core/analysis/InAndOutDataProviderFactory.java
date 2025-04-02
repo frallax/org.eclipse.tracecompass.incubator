@@ -69,7 +69,6 @@ public class InAndOutDataProviderFactory extends AbstractTmfDataProviderConfigur
     private static final String CUSTOM_IN_AND_OUT_ANALYSIS_NAME = "InAndOut Analysis ({0})";  //$NON-NLS-1$
     private static final String CUSTOM_IN_AND_OUT_ANALYSIS_DESCRIPTION = "Custom InAndOut analysis configured by \" {0}\""; //$NON-NLS-1$
 
-    private Table<String, ITmfTrace, ITmfConfiguration> fTmfConfigurationTable = HashBasedTable.create();
     static {
         Bundle bundle = Platform.getBundle(Activator.PLUGIN_ID);
         IPath defaultPath = new Path(SegmentSpecifierConfiguration.IN_AND_OUT_CONFIG_SOURCE_SCHEMA);
